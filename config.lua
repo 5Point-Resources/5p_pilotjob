@@ -30,5 +30,9 @@ Config = {
     Money = {
         passengers = math.random(1000, 2000), -- The money you get for passengers flight
         products = math.random(2000, 3000), -- The money you get for products flight
-    }
+    },
+    
+    UseJob = false, -- Decide if using a job or not (if disabled all players will be able to work as a pilot)
+    
+    JobName = 'pilot' -- Only affected if UseJob is set to true
 }
