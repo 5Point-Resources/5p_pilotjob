@@ -1,5 +1,6 @@
 local opened = false
 local blip = nil
+local mainBlip = nil
 local planeVeh = nil
 local activity = nil
 
@@ -226,7 +227,10 @@ function DrawText(text, coords, font, size)
 end
 
 function InitBlip()
-    RemoveBlip(mainBlip)
+    if mainBlip then
+       RemoveBlip(mainBlip) 
+    end
+ 
     mainBlip = AddBlipForCoord(Config.StartJob)
     SetBlipSprite(mainBlip, Config.MainBlip.sprite)
     SetBlipScale(mainBlip, Config.MainBlip.scale)
