@@ -36,13 +36,25 @@ CreateThread(function()
         local msec = 1000
         local playerPed = PlayerPedId()
         local playerCoords = GetEntityCoords(playerPed)
-
-        if #(Config.StartJob - playerCoords) < 5.0 then
-            msec = 0
-            if not opened then
-                DrawText('~y~Pilot\n~b~Press ~y~E ~b~to start your job as a pilot', Config.StartJob, 0, 0.7)
-                if IsControlJustPressed(0, Config.DefaultKey) and #(Config.StartJob - playerCoords) < 1.5 then
-                    TriggerEvent('5p_pilot:client:openUI')
+            
+        if Config.UseJob then
+            if #(Config.StartJob - playerCoords) < 5.0 and ESX.GetPlayerData().job.name == Config.JobName then
+                msec = 0
+                if not opened then
+                    DrawText('~y~Pilot\n~b~Press ~y~E ~b~to start your job as a pilot', Config.StartJob, 0, 0.7)
+                    if IsControlJustPressed(0, Config.DefaultKey) and #(Config.StartJob - playerCoords) < 1.5 then
+                        TriggerEvent('5p_pilot:client:openUI')
+                    end
+                end
+            end
+        else
+            if #(Config.StartJob - playerCoords) < 5.0 then
+                msec = 0
+                if not opened then
+                    DrawText('~y~Pilot\n~b~Press ~y~E ~b~to start your job as a pilot', Config.StartJob, 0, 0.7)
+                    if IsControlJustPressed(0, Config.DefaultKey) and #(Config.StartJob - playerCoords) < 1.5 then
+                        TriggerEvent('5p_pilot:client:openUI')
+                    end
                 end
             end
         end
