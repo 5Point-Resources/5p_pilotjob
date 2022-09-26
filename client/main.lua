@@ -3,10 +3,6 @@ local blip = nil
 local planeVeh = nil
 local activity = nil
 
-AddEventHandler('onResourceStart', function()
-    InitBlip()
-end)
-
 RegisterNetEvent('5p_pilot:client:openUI')
 AddEventHandler('5p_pilot:client:openUI', function()
     
@@ -33,6 +29,8 @@ RegisterNUICallback('close', function()
 end)
 
 CreateThread(function()
+    InitBlip()
+    Wait(500)
     while true do
         local msec = 1000
         local playerPed = PlayerPedId()
