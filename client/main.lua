@@ -3,6 +3,7 @@ local blip = nil
 local mainBlip = nil
 local planeVeh = nil
 local activity = nil
+local destination = nil
 
 RegisterNetEvent('5p_pilot:client:openUI')
 AddEventHandler('5p_pilot:client:openUI', function()
@@ -65,6 +66,7 @@ end)
 
 RegisterNUICallback('start', function(data, cb)
     local isClear = ESX.Game.IsSpawnPointClear(Config.SpawnLocation.xyz, 3.0)
+    destination = Config.Destination[math.random(1, #Config.Destination)]
 
     if isClear then
         activity = data.type
@@ -85,7 +87,7 @@ RegisterNUICallback('start', function(data, cb)
 
                     while not IsPedInAnyPlane(PlayerPedId()) do Wait(1000) end
                     TriggerEvent('chat:addMessage', {color = { 230, 219, 45 }, args = {'You have a new location in your map, fly towards the new airport.'}})
-                    CreateBlip(Config.Destination)
+                    CreateBlip(destination)
                     TriggerEvent('5p_pilot:client:flying', k)
                 end
             end
@@ -103,10 +105,10 @@ AddEventHandler('5p_pilot:client:flying', function(k)
         local playerCoords = GetEntityCoords(playerPed)
         local currentPlane = GetVehiclePedIsIn(playerPed)
 
-        if #(Config.Destination - playerCoords) < 50.0 then
+        if #(destination - playerCoords) < 50.0 then
             msec = 0
-            DrawMarker(1, Config.Destination + vec3(0.0, 0.0, -1.0), 0, 0, 0, 0, 0, 0, 5.0, 5.0, 1.0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0)
-            if #(Config.Destination - playerCoords) < 8.0 then
+            DrawMarker(1, destination + vec3(0.0, 0.0, -1.0), 0, 0, 0, 0, 0, 0, 5.0, 5.0, 1.0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0)
+            if #(destination - playerCoords) < 8.0 then
                 ESX.ShowHelpNotification('Press ~INPUT_CONTEXT~ to land the plane')
                 if IsControlJustPressed(0, Config.DefaultKey) and IsPedInAnyPlane(PlayerPedId()) then
                     if planeVeh == currentPlane then
