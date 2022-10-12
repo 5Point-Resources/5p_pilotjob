@@ -152,7 +152,7 @@ AddEventHandler('5p_pilot:client:land', function()
     FreezeEntityPosition(plane, false)
     TriggerEvent('chat:addMessage', {color = { 230, 219, 45 }, args = {'Your plane is now empty, return to the airport.'}})
     TriggerEvent('5p_pilot:client:return', k)
-    CreateBlip(Config.StartJob)
+    CreateBlip(Config.SpawnLocation)
 end)
 
 RegisterNetEvent('5p_pilot:client:return')
