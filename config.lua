@@ -1,4 +1,6 @@
 Config = {
+    UsingOldESX = true, -- Set this to false if you are using ESX Legacy
+
     StartJob = vec3(-941.0008, -2954.2141, 13.9451), -- The location where you start the job
 
     SpawnLocation = vec4(-969.9725, -3000.9375, 13.9451, 59.4218), -- The location where the plane will spawn when the job starts

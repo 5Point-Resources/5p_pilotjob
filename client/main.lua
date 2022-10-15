@@ -5,6 +5,11 @@ local planeVeh = nil
 local activity = nil
 local destination = nil
 
+if Config.UseOldESX then
+    ESX = nil
+    TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+end
+
 RegisterNetEvent('5p_pilot:client:openUI')
 AddEventHandler('5p_pilot:client:openUI', function()
     
