@@ -1,5 +1,5 @@
 Config = {
-    UsingOldESX = true, -- Set this to false if you are using ESX Legacy
+    UsingOldESX = true, -- Set this to false if you use ESX Legacy
 
     StartJob = vec3(-941.0008, -2954.2141, 13.9451), -- The location where you start the job
 
